@@ -1,10 +1,10 @@
 import React from "react";
-import {View, Text, Imagem, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <Imagem 
+      <Image
       source={require('./assets/img/bg-smartphone.jpg')} 
       />
       <Text>App TDS03</Text>
