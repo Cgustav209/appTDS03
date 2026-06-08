@@ -1,15 +1,16 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { COLORS } from "../Presentation/theme/AppTheme";
+import { COLORS } from "../theme/AppTheme";
 
 interface Props {
   text: string,
+  onPress?: () => void,
 }
 
-export const RoundedButton = ({ text }: Props) => {
+export const RoundedButton = ({ text, onPress }: Props) => {
     return (
         <TouchableOpacity 
-          onPress={() => {}}
+          onPress={onPress}
           style= { styles.bnt}
         >
           
