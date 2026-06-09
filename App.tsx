@@ -8,8 +8,10 @@ import { RedefinirSenhaScreen } from "./src/Presentation/Views/redefinirSenha/Re
 
  
 export type RootStackParamList = {
-  Inicial: undefined;
-  RegisterScreen: undefined;
+  HomeScreen: undefined, // Uma array usa " , "
+  RegisterScreen: undefined,
+  RecuperarSenhaScreen: undefined,
+  RedefinirSenhaScreen: undefined,
 }
  
 const Stack = createNativeStackNavigator();
@@ -22,11 +24,18 @@ const App = () => {
        
         }}>
            <Stack.Screen
-                name="Inicial" component={HomeScreen}
+                name="HomeScreen" component={HomeScreen}
             />
             <Stack.Screen
+            //name = nome da rota,      component = rota
                 name="RegisterScreen" component={RegisterScreen}
-                options={{ headerShown : true ,  title: "Novo Usuario" }}
+                // configuracoes da tela
+                options={{ 
+                  // mostrar cabecario
+                  headerShown : true ,  
+                  // Define o título exibido no cabeçalho
+                  title: "Novo Usuario" 
+                }}
             />
               <Stack.Screen
                 name="RecuperarSenhaScreen" component={RecuperarSenhaScreen}

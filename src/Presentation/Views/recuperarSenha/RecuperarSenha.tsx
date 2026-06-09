@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
 
 //navegation
@@ -13,6 +13,7 @@ import { RoundedButton } from "../../componentes/RoundedButton";
 
 // View
 import useViewModel from './ViewModel';
+
 
 export const RecuperarSenhaScreen = () => {
 
@@ -53,11 +54,24 @@ return (
                    <RoundedButton
                     text="Enviar Token"
                     onPress={ () => {
+                      // salva na lista os dados
                       recuperarSenha();
-                      navigation.navigate('RedefinirSenhaScreen'); 
-                    }}
+                      //cria uma mensagem 
+                      Alert.alert(
+                         //Tirulo
+                          'Sucesso',
+                          //Mensagem
+                          'Token enviado',
+                          // lista de botoes
+                          [
+                            {
+                              text: 'OK',
+                              onPress: () => navigation.navigate('RedefinirSenhaScreen')
+                            }
+                          ]
+                        );
+                      }}   
                     />
-
                 </View>
        
            

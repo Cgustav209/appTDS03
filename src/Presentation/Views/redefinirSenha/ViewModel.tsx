@@ -4,7 +4,7 @@ const RedefinirSenhaViewModel = () => {
         const [values, setValues] = useState({   
             userToken: '',       
             userEmail: '',
-            usePassoword: '',
+            userPassword: '',
             userConfirmPassword: '',
         
         });

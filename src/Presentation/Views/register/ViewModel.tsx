@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const RegisterViewModel = () => {
         const [values, setValues] = useState({          
             userName: '',
+            userNameuse: '',
             userEmail: '',
             userPhone: '',
             userPassword: '',

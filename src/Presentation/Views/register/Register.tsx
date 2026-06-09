@@ -12,7 +12,7 @@ import useViewModel from './ViewModel';
 export const RegisterScreen = () => {
 
        const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-       const { userEmail, userPassword, userName, userPhone, userConfirmPassword, onChange, register } = useViewModel();
+       const { userEmail, userPassword, userName, userNameuse, userPhone, userConfirmPassword, onChange, register } = useViewModel();
 
        const testOS = () => {
         if (Platform.OS === 'android') {
@@ -58,10 +58,10 @@ export const RegisterScreen = () => {
                 image={require('../../../../assets/img/my_user.png')}
                 placeholder="Digite seu nome de usuário"
                 keyboardType="default"
-                value={ userEmail }
+                value={ userNameuse }
                 onChangeText={ onChange }
                 secureTextEntry={false}
-                property="userEmail"                                
+                property="userNameuse"                                
               />
 
               <CustomTextInput
@@ -110,6 +110,7 @@ export const RegisterScreen = () => {
                     text="Cadastrar"
                     onPress={ () => {
                       register();
+                      navigation.navigate('HomeScreen')
                     }}
                     />
                 </View>

@@ -17,7 +17,7 @@ import useViewModel from './ViewModel';
 export const RedefinirSenhaScreen = () => {
 
        const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-       const { userEmail, userPassword, userConfirmPassword, userToken, onChange } = useViewModel();
+       const { userEmail, userPassword, userConfirmPassword, userToken, onChange, redefinirSenha } = useViewModel();
 
 return (
     <View style={styles.container}>
@@ -32,7 +32,7 @@ return (
                   source={require('../../../../assets/img/user_image.png')}
                   style={styles.logoImg}
                 />
-                <Text style={styles.logoTxt}>Digite seu email</Text>
+                <Text style={styles.logoTxt}>Digite seu Token</Text>
               </View>
            <View style={styles.frm}>
                 <CustomTextInput
@@ -77,10 +77,10 @@ return (
                 <View style={{ marginTop: 40 }}>
        
                    <RoundedButton
-                    text="Enviar Token"
+                    text="Concluir"
                     onPress={ () => {
-                      redefinirSenha(); 
-                     navigation.navigate('Inicial');
+                     redefinirSenha(); 
+                     navigation.navigate('HomeScreen');
                     }}
                     />
 
