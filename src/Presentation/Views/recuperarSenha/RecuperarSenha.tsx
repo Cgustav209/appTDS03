@@ -17,27 +17,33 @@ import useViewModel from './ViewModel';
 
 export const RecuperarSenhaScreen = () => {
 
+      // Permite navegar entre as telas da aplicação
        const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+       // Pega os dados e funções retornados pelo ViewModel
        const { userEmail, onChange, recuperarSenha } = useViewModel();
 
 return (
     <View style={styles.container}>
+      {/* background com imagem */}
         <Image
-                    source={require('../../../../assets/img/chef.jpg')}
-                    style={styles.ImgBg}
-                  />
-            <Text>Recuperar Senha</Text>
+           source={require('../../../../assets/img/chef.jpg')}
+           style={styles.ImgBg}
+         />
+        <Text>Recuperar Senha</Text>
        
         <View style={styles.logoContainer}>
-                <Image
-                  source={require('../../../../assets/img/user_image.png')}
-                  style={styles.logoImg}
-                />
-                <Text style={styles.logoTxt}>Digite seu email</Text>
-              </View>
-           <View style={styles.frm}>
- 
-              <CustomTextInput
+            <Image
+               source={require('../../../../assets/img/user_image.png')}
+               style={styles.logoImg}
+             />
+            <Text 
+               style={styles.logoTxt}>Digite seu email
+            </Text>
+        </View>
+              
+         <View style={styles.frm}>
+          {/*Componente de input, que recebe todos os valores pedidos*/}
+            <CustomTextInput
                       image={require('../../../../assets/img/email.png')}
                       placeholder="Digite seu Email"
                       keyboardType="email-address"
@@ -45,13 +51,13 @@ return (
                       onChangeText={ onChange }
                       secureTextEntry={false}
                       property="userEmail"
-                    />
+             />
  
          
              
-                <View style={{ marginTop: 40 }}>
+             <View style={{ marginTop: 40 }}>
        
-                   <RoundedButton
+               <RoundedButton
                     text="Enviar Token"
                     onPress={ () => {
                       // salva na lista os dados
@@ -71,15 +77,13 @@ return (
                           ]
                         );
                       }}   
-                    />
-                </View>
-       
+                />
+             </View>
            
-               
-              </View>
-            </View>
-          );
-        };
+           </View>
+       </View>
+      );
+     };
        
   const styles = StyleSheet.create({
   container:{
