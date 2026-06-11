@@ -3,7 +3,7 @@ import {View, Text, Image, StyleSheet , TextInput, ToastAndroid, Platform, Alert
 // importacao dos elementos de navegação
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../../../App';
+import { RootStackParamList } from '../../../../Aula3_App';
 
 //Componentes
 import { COLORS } from "./../../theme/AppTheme";

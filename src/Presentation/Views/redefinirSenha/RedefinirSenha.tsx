@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 
 //navegation
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../../../../App";
+import { RootStackParamList } from "../../../../Aula3_App";
 import { useNavigation } from '@react-navigation/native';
 // componentes
 import { CustomTextInput } from "../../componentes/CustomTextInput";

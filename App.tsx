@@ -1,53 +1,86 @@
-import * as React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "./src/Presentation/Views/home/Home";
-import { NavigationContainer } from "@react-navigation/native";
-import { RegisterScreen } from "./src/Presentation/Views/register/Register";
-import { RecuperarSenhaScreen } from "./src/Presentation/Views/recuperarSenha/RecuperarSenha";
-import { RedefinirSenhaScreen } from "./src/Presentation/Views/redefinirSenha/RedefinirSenha";
+import React, {useState, useEffect} from "react";
+import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import * as Location from "expo-location";
 
- 
-export type RootStackParamList = {
-  HomeScreen: undefined, // Uma array usa " , "
-  RegisterScreen: undefined,
-  RecuperarSenhaScreen: undefined,
-  RedefinirSenhaScreen: undefined,
-}
- 
-const Stack = createNativeStackNavigator();
- 
-const App = () => {
-  return(
-    <NavigationContainer>
-      <Stack.Navigator screenOptions = {{
-        headerShown: false
+export default function App() 
+{
+    const[location, setLocation] = useState<Location.LocationObject | null>(null);
+    const[errorMsg, setErrorMsg] = useState<string | null>(null);
+    const[loading, setLoading] = useState(true);
+    useEffect(() => {
        
-        }}>
-           <Stack.Screen
-                name="HomeScreen" component={HomeScreen}
-            />
-            <Stack.Screen
-            //name = nome da rota,      component = rota
-                name="RegisterScreen" component={RegisterScreen}
-                // configuracoes da tela
-                options={{ 
-                  // mostrar cabecario
-                  headerShown : true ,  
-                  // Define o título exibido no cabeçalho
-                  title: "Novo Usuario" 
-                }}
-            />
-              <Stack.Screen
-                name="RecuperarSenhaScreen" component={RecuperarSenhaScreen}
-                options={{ headerShown : true ,  title: "Recuperar Senha" }}
-            />
-            <Stack.Screen
-                name="RedefinirSenhaScreen" component={RedefinirSenhaScreen}
-                options={{ headerShown : true ,  title: "Redefinir Senha" }}
-            />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    async function buscaLocalizacao() 
+    {
+            try{
+                //Solicitar permissão para acessar a localização
+                let { status } = await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                    setErrorMsg("Permissão para acessar a localização negada.");
+                    setLoading(false);
+                    return;
+                }
+                //Busca a ultima posicao salva(é instantaneo e evita load eterno do emulador)
+                let currentLocation = await Location.getLastKnownPositionAsync();
+                if(!currentLocation) {
+                    currentLocation = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
+                }
+                setLocation(currentLocation);
+            } catch (error) {
+                setErrorMsg("Erro ao tentar buscar a localização!");
+            } finally {
+                setLoading(false);
+            }
+        }
+        buscaLocalizacao();
+    });
+    //Mostra um aviso se der erro ou permissao negada
+    if(errorMsg){
+            return(
+    <View style={styles.container}>
+
+        <Text style={styles.errorText}>{errorMsg}</Text>
+
+    </View>
+            )
+        }
+        //Mostra o loading enqueanto tenta achar as coordenadas
+        if(loading){
+            return(
+    <View style={styles.container}>
+
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text style={styles.loadingText}>Buscando satélites...</Text>
+    </View>
+            )
+    }
+    //Deu certo! mostra as coordenadas
+    return (
+    <View style={styles.container}>
+        <Text style={styles.title}>Sua localização</Text>
+        <View style={styles.card}>
+            <Text style={styles.text}>
+                 <Text style={styles.bold}>Latitude:</Text> 
+                 {location?.coords.latitude}
+            </Text>
+            <Text style={styles.text}>
+                <Text style={styles.bold}>Longitude:</Text> 
+                {location?.coords.latitude}
+            </Text>
+            <Text style={styles.text}>
+                <Text style={styles.bold}>Precisão:</Text>  
+                {location?.coords.accuracy?.toFixed(2)} metros
+            </Text>
+        </View>
+    </View>
+    );
 }
-     
-export default App;
+const styles = StyleSheet.create({
+    container:{},
+    loadingText:{},
+    errorText:{},
+    title:{},
+    card:{},
+    text:{},
+    bold:{},
+})
+ 

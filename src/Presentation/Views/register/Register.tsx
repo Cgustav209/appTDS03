@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import { View, Text, Image, StyleSheet, Platform, Alert, TextInput, Button, ToastAndroid } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, Alert, ToastAndroid } from 'react-native';
 import { COLORS } from '../../theme/AppTheme';
 import { RoundedButton } from "../../componentes/RoundedButton";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../../../../App";
+import { RootStackParamList } from "../../../../Aula3_App";
 import { useNavigation } from '@react-navigation/native';
 import { CustomTextInput } from "../../componentes/CustomTextInput";
 
