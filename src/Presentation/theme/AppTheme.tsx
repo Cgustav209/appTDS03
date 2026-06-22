@@ -5,3 +5,4 @@ export const COLORS = {
     bgColor: '#Eee',
     bgBlack: '#000',
 }
+

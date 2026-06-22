@@ -144,6 +144,7 @@ export default function App() {
             <Text style={ styles.textBtn }> Tirar Foto </Text>
           </TouchableOpacity>
         </View>
+        
       </View>
     
     )}

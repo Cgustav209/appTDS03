@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import {View, Text, Image, StyleSheet , TextInput, ToastAndroid, Platform, Alert, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TextInput, ToastAndroid, Platform, Alert, TouchableOpacity, ScrollView, KeyboardAvoidingView} from 'react-native';
 // importacao dos elementos de navegação
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../../../Aula3_App';
 
 //Componentes
-import { COLORS } from "./../../theme/AppTheme";
+import styles from '../../theme/HomeStyles';
 import { RoundedButton } from "../../componentes/RoundedButton";
 import { CustomTextInput } from '../../componentes/CustomTextInput';
 
@@ -34,6 +34,12 @@ export const HomeScreen = () => {
   };
 
   return (
+
+    <KeyboardAvoidingView
+      behavior={ Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{flex: 1 }}
+    >
+
     <View style={styles.container}>
       <Image
       source={require('../../../../assets/bg-smartphone.jpg')} 
@@ -49,10 +55,19 @@ export const HomeScreen = () => {
         Restaurante | Pizzaria Palermo 
        </Text>
       </View>
+    
       <View style={ styles.frm }>
-        <Text style= {styles.frmTitle}>
-          Entrar
-        </Text>
+         <Text style= {styles.frmTitle}>
+             Entrar
+           </Text>
+        <ScrollView 
+          contentContainerStyle={{ flexGrow: 1}}
+          showsVerticalScrollIndicator={false}
+          bounces={false}>
+          
+
+
+       
           <CustomTextInput
             image={require('../../../../assets/img/user.png')} 
             placeholder="Digite seu Email / Usuário"
@@ -94,81 +109,17 @@ export const HomeScreen = () => {
             <Text style={ styles.txtRegister}> Registre-se </Text>
           </TouchableOpacity>
         </View> 
+
+
+      </ScrollView>
+
       </View>
     </View>
+    </KeyboardAvoidingView>
   );
 
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.bgBlack,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoContainer: {
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    top: '15%',
-  },
-  logoImg: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
-  },
-  imgBg: {
-    width: '100%',
-    height: '100%',
-    opacity: 0.8,
-    bottom: '30%',
-  },
 
-  logoTxt:{
-    color: COLORS.primary,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    borderBlockColor: COLORS.bgBlack,
-    marginTop: 15,
-    fontSize: 20,
-  },
-  frm: {
-    width: '100%',
-    height: '40%',
-    backgroundColor: COLORS.bgColor,
-    position: 'absolute',
-    bottom: 0,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    padding: 20,  
-  },
-  frmTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-
-  frmRegister:{
-  flexDirection:'row',
-  justifyContent: 'center',
-  marginTop:15,
-},
- 
-txtRegister:{
-  fontStyle: 'italic',
-  fontWeight: 'bold',
-  borderBottomColor: COLORS.secondary,
-  borderBottomWidth: 1,
-  marginLeft: 5,
-  color: COLORS.secondary,
-},
-txtRecover:{
-  fontStyle: 'italic',
-  fontWeight: 'bold',
-  borderBottomColor: COLORS.secondary,
-  left: '70%',
-  color: COLORS.secondary,
-},
-});
 
 // export default HomeScreen;
