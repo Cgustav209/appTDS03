@@ -4,3 +4,6 @@ npx expo install typescript @types/react
 
 ## Instalando dependencia de Camera
 npx expo install expo-camera
+
+## Acesso a `Pasta de Imagens
+npx expo install expo-image-picker
